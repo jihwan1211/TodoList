@@ -8,6 +8,7 @@ const ariaLabel = { "aria-label": "description" };
 const StyledDiv = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 `;
 
 const TodoListInput = () => {
