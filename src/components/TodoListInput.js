@@ -1,6 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { todoInputActions, undoneTodoListActions } from "../store";
+import { TextField, Button, Input } from "@mui/material";
+import styled from "styled-components";
+
+const ariaLabel = { "aria-label": "description" };
+const StyledDiv = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const TodoListInput = () => {
   const [todoInput, setTodoInput] = useState("");
@@ -26,6 +34,7 @@ const TodoListInput = () => {
     });
   };
 
+  //todoObject가 만들어졌으면 undoneTodoList에 추가.
   useEffect(() => {
     dispatch(undoneTodoListActions.add(todoObject));
     id.current += 1;
@@ -33,13 +42,18 @@ const TodoListInput = () => {
   }, [todoObject]);
 
   return (
-    <div>
+    <StyledDiv>
       <form onSubmit={handleSubmit}>
         <label for="todoInput">할 일을 입력하세요</label>
-        <input id="todoInput" onChange={handleChange} value={todoInput}></input>
-        <button>입력</button>
+        <Input
+          id="todoInput"
+          onChange={handleChange}
+          value={todoInput}
+          inputProps={ariaLabel}
+        />
+        <Button variant="contained">입력</Button>
       </form>
-    </div>
+    </StyledDiv>
   );
 };
 
